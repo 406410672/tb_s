@@ -15,7 +15,7 @@ sys.path.append(ROOT_PATH)
 print(ROOT_PATH)
 # sys.path.append(ROOT_PATH)
 from datetime import datetime
-from taobao_scrapy.MyItems.items import (TaobaoCategoryItem, TaobaoDetailItem,
+from taobao_scrapy.MyItems.items import (TaobaoCategoryItem,
                                          TaoBaolistsrpItem, TaoBaospulistItem, TaoBaomainsrpItem, TaoBaospudetailItem)
 
 from DB.DBManager import DBManager
@@ -28,10 +28,10 @@ TYPE_MAINSRP = 'TYPE_MAINSRP'
 class TaobaoScrapyPipeline(object):
     dbmanager = DBManager()
 
-    fil = open('t.txt', mode='w')
-
+    # fil = open('t.txt', mode='w')
+    #
     category_file = open('category.txt', mode='w')
-    items_file = open('items.txt', mode='w')
+    # items_file = open('items.txt', mode='w')
 
     def process_item(self, item, spider):
         print('piplelines accept data :{}'.format(type(item)))
@@ -41,49 +41,15 @@ class TaobaoScrapyPipeline(object):
             insert_date = item['insert_date']
             self.category_file.write('category_name:{} url:{} insert_date:{}\n'.format(category_name, category_url, insert_date))
             print('处理商品一级分类')
-        elif isinstance(item, TaobaoDetailItem):
-            pass
         elif isinstance(item, TaoBaolistsrpItem):
             self.process_taobao_item(TYPE_LISTSRP, item)
-            # category_name = item['category_name']
-            # category_url = item['category_url']
-            # insert_date = item['insert_date']
-            # page_name = item['page_name']
-            # data_info = item['data_info']
-            # data_list = item['data_list']
-            # if os.path.exists('listsrp') is False:
-            #     os.mkdir('listsrp')
-            # fil = open(os.path.join('listsrp',category_name+'.txt'), 'w')
-            # fil.write('data_info :{} \n data_list:{}'.format(data_info, data_list))
-            # fil.close()
-            # print('处理listsrp的数据完毕')
+
         elif isinstance(item, TaoBaospulistItem):
             self.process_taobao_item(TYPE_SPULIST, item)
-            # category_name = item['category_name']
-            # category_url = item['category_url']
-            # insert_date = item['insert_date']
-            # page_name = item['page_name']
-            # data_info = item['data_info']
-            # data_list = item['data_list']
-            # if os.path.exists('spulist') is False:
-            #     os.mkdir('spulist')
-            # fil = open(os.path.join('spulist',category_name+'.txt'), 'w')
-            # fil.write('data_info :{} \n data_list:{}'.format(data_info, data_list))
-            # fil.close()
+
         elif isinstance(item, TaoBaomainsrpItem):
             self.process_taobao_item(TYPE_MAINSRP, item)
-            # category_name = item['category_name']
-            # category_url = item['category_url']
-            # insert_date = item['insert_date']
-            # page_name = item['page_name']
-            # data_info = item['data_info']
-            # data_list = item['data_list']
-            # if os.path.exists('mainsrp') is False:
-            #     os.mkdir('mainsrp')
-            # fil = open(os.path.join('mainsrp',category_name+'.txt'), 'w')
-            # fil.write('data_info :{} \n data_list:{}'.format(data_info, data_list))
-            # fil.close()
-            # print('处理mainsrp的数据完毕')
+
         elif isinstance(item, TaoBaospudetailItem):
             self.process_taobao_item(TYPE_SPUDETAIL, item)
 
@@ -92,6 +58,7 @@ class TaobaoScrapyPipeline(object):
         category_name = item['category_name']
         category_url = item['category_url']
         insert_date = item['insert_date']
+        request_url = item['request_url']
         page_name = item['page_name']
         data_info = item['data_info']
         data_list = item['data_list']
@@ -100,7 +67,8 @@ class TaobaoScrapyPipeline(object):
             'category_name': category_name,
             'category_url': category_url,
             'page_name': page_name,
-            'category_info': data_info
+            'category_info': data_info,
+            'request_url': request_url
         }
         if type == TYPE_LISTSRP:
             for data_item in data_list:

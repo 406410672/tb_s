@@ -37,30 +37,33 @@ class TaobaoParse(object):
 
 
 if __name__ == '__main__':
-    # def parser_category():
-    #     tree = etree.HTML(f.read())
-    #     e_tree = tree.xpath('//*[text()="家电办公" or text()="手机数码"]')
-    #
-    #     category_list = []
-    #     for element in e_tree:
-    #         sub_elements = element.xpath('../ul/li')
-    #         for sub_element in sub_elements:
-    #             p_category_name = sub_element.xpath('./a/text()')[0]
-    #
-    #             category_names_result = sub_element.xpath('./div/*[@class="category-name"]/text()')
-    #             category_urls_result = sub_element.xpath('./div/*[@class="category-name"]/@href')
-    #
-    #             for i in range(len(category_urls_result)):
-    #                 category_name = category_names_result[i]
-    #                 url = category_urls_result[i]
-    #                 complate_category_name = '{}:{}'.format(p_category_name, category_name)
-    #                 category_list.append({'category_name': complate_category_name, 'category_url': url})
-    #
-    #     for item in category_list:
-    #         print(item)
-    #
+
     f = open('../../t.txt','r',encoding='utf-8')
-    res = TaobaoParse.get_page_config(f.read())
-    print(json.dumps(res))
+    category_list = []
+    def parser_category():
+        tree = etree.HTML(f.read())
+        e_tree = tree.xpath('//*[text()="家电办公" or text()="手机数码" or text()="护肤彩妆"]')
+
+        # global category_list = []
+        for element in e_tree:
+            sub_elements = element.xpath('../ul/li')
+            for sub_element in sub_elements:
+                p_category_name = sub_element.xpath('./a/text()')[0]
+
+                category_names_result = sub_element.xpath('./div/*[@class="category-name"]/text()')
+                category_urls_result = sub_element.xpath('./div/*[@class="category-name"]/@href')
+
+                for i in range(len(category_urls_result)):
+                    category_name = category_names_result[i]
+                    url = category_urls_result[i]
+                    complate_category_name = '{}:{}'.format(p_category_name, category_name)
+                    category_list.append({'category_name': complate_category_name, 'category_url': url})
+
+        for item in category_list:
+            print(item)
+    parser_category()
+    print(len(category_list))
+    # res = TaobaoParse.get_page_config(f.read())
+    # print(json.dumps(res))
 
     # print(category_list)

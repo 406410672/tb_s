@@ -18,7 +18,7 @@ from lxml import etree
 from datetime import datetime
 from scrapy.http import Request
 
-from taobao_scrapy.MyItems.items import (TaobaoCategoryItem, TaobaoDetailItem,
+from taobao_scrapy.MyItems.items import (TaobaoCategoryItem,
                                          TaoBaolistsrpItem, TaoBaospulistItem, TaoBaomainsrpItem, TaoBaospudetailItem)
 
 from taobao_scrapy.BaseModule.TaobaoParse import TaobaoParse
@@ -38,7 +38,7 @@ class TaobaoSpider(scrapy.Spider):
     def parse(self, response):
         print(response.url)
         tree = etree.HTML(response.text)
-        x = '//*[text()="家电办公" or text()="手机数码"]'
+        x = '//*[text()="家电办公" or text()="手机数码" or text()="护肤彩妆"]'
         e_tree = tree.xpath(x)
 
 
@@ -57,22 +57,6 @@ class TaobaoSpider(scrapy.Spider):
                     url = category_urls_result[i]
                     complate_category_name = '{}:{}'.format(p_category_name,category_name)
                     category_list.append({'category_name': complate_category_name,'category_url' : url})
-
-                # category_name = c_ns[i]
-                #     url = c_url[i]
-                #     category_list.append({'category_name' : category_name,
-                #                           'category_url' : url})
-                # print(len(name_result))
-                # print(len(url_result))
-
-            #旧的解析方式
-            # c_ns = element.xpath('../ul/li/div/*[@class="category-name"]/text()')
-            # c_url = element.xpath('../ul/li/div/*[@class="category-name"]/@href')
-            # for i in range(len(c_ns)):
-            #     category_name = c_ns[i]
-            #     url = c_url[i]
-            #     category_list.append({'category_name' : category_name,
-            #                           'category_url' : url})
 
         i = 0
         for category in category_list:
@@ -93,7 +77,7 @@ class TaobaoSpider(scrapy.Spider):
                 # yield Request(url=test_url, callback=self.parse_content, meta={'category_name': c_n, 'category_url':c_url})
                 yield Request(url='https:'+c_url, callback=self.parse_content, meta={'category_name': c_n, 'category_url':c_url})
             # if i == 1:
-                # return
+            #     return
 
 
     def parse_content(self, response):
@@ -101,10 +85,12 @@ class TaobaoSpider(scrapy.Spider):
         category_name = meta['category_name']
         category_url = meta['category_url']
         content = response.text
+        request_url = response.url
         g_page_config = TaobaoParse.get_page_config(content)
         page_name = g_page_config.get('pageName')
         insert_date = datetime.now()
         data_info = g_page_config.get('mods').get('sortbar').get('data').get('pager')
+
         if page_name == 'spudetail':
             data_list = g_page_config.get('mods').get('itemlist').get('data').get('auctions')
             item = TaoBaospudetailItem()
@@ -113,7 +99,7 @@ class TaobaoSpider(scrapy.Spider):
             item['category_name'] = category_name
             item['category_url'] = category_url
             item['insert_date'] = insert_date
-            item['g_page_config'] = g_page_config
+            item['request_url'] = request_url
             item['page_name'] = page_name
             item['data_info'] = data_info
             item['data_list'] = data_list
@@ -139,15 +125,15 @@ class TaobaoSpider(scrapy.Spider):
                     yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name, 'category_url':category_url, 'category_name_level_2': category_name_level_2})
 
         elif page_name == 'mainsrp':
-            data = g_page_config.get('mods').get('itemlist').get('data').get('auctions')
+            data_list = g_page_config.get('mods').get('itemlist').get('data').get('auctions')
             item = TaoBaomainsrpItem()
             item['category_name'] = category_name
             item['category_url'] = category_url
             item['insert_date'] = insert_date
-            item['g_page_config'] = g_page_config
+            item['request_url'] = request_url
             item['page_name'] = page_name
             item['data_info'] = data_info
-            item['data_list'] = data
+            item['data_list'] = data_list
             yield item
         elif page_name == 'listsrp':
             data_list = g_page_config.get('mods').get('itemlist').get('data').get('auctions')
@@ -155,7 +141,7 @@ class TaobaoSpider(scrapy.Spider):
             item['category_name'] = category_name
             item['category_url'] = category_url
             item['insert_date'] = insert_date
-            item['g_page_config'] = g_page_config
+            item['request_url'] = request_url
             item['page_name'] = page_name
             item['data_info'] = data_info
             item['data_list'] = data_list
@@ -180,13 +166,12 @@ class TaobaoSpider(scrapy.Spider):
                     yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name, 'category_url':category_url})
 
         elif page_name == 'spulist':
-
             data_list = g_page_config.get('mods').get('grid').get('data').get('spus')
             item = TaoBaospulistItem()
             item['category_name'] = category_name
             item['category_url'] = category_url
             item['insert_date'] = insert_date
-            item['g_page_config'] = g_page_config
+            item['request_url'] = request_url
             item['page_name'] = page_name
             item['data_info'] = data_info
             item['data_list'] = data_list

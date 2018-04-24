@@ -1,1 +1,1 @@
-category_name:手机:iPhone url://s.taobao.com/list?app=vproduct&vlist=1&q=iphone&cat=1512&from_type=3c insert_date:2018-04-24 17:30:45.663356
+category_name:美容护肤:卸妆 url://s.taobao.com/list?spm=1.7274553.206-6.2.zlfzYb&seller_type=taobao&q=%E5%8D%B8%E5%A6%86&pvid=f329390a-d387-43e6-9f6a-43ea7810f1bc&scm=1007.11287.5866.100200300000000 insert_date:2018-04-24 18:31:13.444360
