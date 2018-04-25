@@ -29,7 +29,7 @@ class DBManager(object):
         uri = "mongodb://%s:%s@%s" % (quote_plus(configloader.mongodb_user()), quote_plus(configloader.mongodb_password()), configloader.mongodb_host())
         print(uri)
         self.mgdbManager = pymongo.MongoClient(uri)
-        self.db = self.mgdbManager.taobao2
+        self.db = self.mgdbManager.taobao3
         print(self.db.taobao_item.find())
 
         if self.db.taobao_item.count() is 0:

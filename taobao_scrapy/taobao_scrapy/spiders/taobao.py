@@ -30,6 +30,8 @@ class TaobaoSpider(scrapy.Spider):
     allowed_domains = ['taobao.com']
     root_url = 'https://www.taobao.com/markets/tbhome/market-list'
     logger = HTLogger('taobao.log')
+    nav_cat_set = set()
+
 
     def start_requests(self):
         yield Request(self.root_url, self.parse)
@@ -67,7 +69,6 @@ class TaobaoSpider(scrapy.Spider):
                         url = category_urls_result[i]
                         complate_category_name = '{}:{}:{}'.format(k, p_category_name, category_name)
                         category_list.append({'category_name': complate_category_name, 'category_url': url})
-
             i = 0
             for category in category_list:
                 i += 1
@@ -89,7 +90,6 @@ class TaobaoSpider(scrapy.Spider):
                                   meta={'category_name': c_n, 'category_url': c_url})
                     # if i == 1:
                     #     return
-
 
     def parse_content(self, response):
         meta = response.meta
@@ -146,6 +146,46 @@ class TaobaoSpider(scrapy.Spider):
             item['data_info'] = data_info
             item['data_list'] = data_list
             yield item
+            #先进行分类，再进行分页
+            #取sub数量最最大的分类列表
+            #判断如果URL中存在key则不进行插入参数
+            try:
+                nav_category_list = g_page_config.get('mods').get('nav').get('data').get('common')
+                max_category_item = None
+
+                for nav_category in nav_category_list:
+                    if max_category_item == None:
+                        max_category_item = nav_category
+                    else:
+                        if len(max_category_item.get('sub')) < len(nav_category.get('sub')):
+                            max_category_item = nav_category
+                if max_category_item != None:
+                    max_category_subs = max_category_item.get('sub')
+
+
+            except Exception as error:
+                print('获取分类失败 ：{}'.format(error))
+
+
+            if data_info != None:
+                page_size = data_info.get('pageSize')
+                totalCount = data_info.get('totalCount')
+                current_page = data_info.get('currentPage')
+                print('category_name:{}'.format(category_name))
+                print('page_name:{}'.format(page_name))
+                print('page_size:{}'.format(page_size))
+                print('totalCount:{}'.format(totalCount))
+                print('current_page:{}'.format(current_page))
+                if int(current_page) * int(page_size) < int(totalCount):
+                    og_url = response.url
+                    s_value_list = re.findall('&(s=\d*)', og_url)
+                    if len(s_value_list) == 0 and int(current_page) == 1:
+                        new_url = og_url+'&s=60'
+                    else:
+                        new_url = og_url.replace(s_value_list[0], 's=%d'%(int(page_size)*int(current_page)))
+                    print('新的url:{}'.format(new_url))
+                    yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name, 'category_url':category_url})
+
         elif page_name == 'listsrp':
             data_list = g_page_config.get('mods').get('itemlist').get('data').get('auctions')
             item = TaoBaolistsrpItem()
