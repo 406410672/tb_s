@@ -29,19 +29,19 @@ class DBManager(object):
         uri = "mongodb://%s:%s@%s" % (quote_plus(configloader.mongodb_user()), quote_plus(configloader.mongodb_password()), configloader.mongodb_host())
         print(uri)
         self.mgdbManager = pymongo.MongoClient(uri)
-        self.db = self.mgdbManager.taobao
+        self.db = self.mgdbManager.taobao2
         print(self.db.taobao_item.find())
 
         if self.db.taobao_item.count() is 0:
             self.db.taobao_item.create_index([("insert_time",pymongo.ASCENDING)])
-        if self.db.taobao_category.count() is 0:
-            self.db.taobao_category.create_index([("insert_time",pymongo.ASCENDING)])
+        if self.db.taobao_crawl_log.count() is 0:
+            self.db.taobao_crawl_log.create_index([("insert_time",pymongo.ASCENDING)])
         if self.db.taobao_spu.count() is 0:
             self.db.taobao_spu.create_index([("insert_time",pymongo.ASCENDING)])
 
     def insert_category_info(self, obj):
         print('mongodb 正在处理 category_info 数据 len:{}'.format(len(obj)))
-        self.db.taobao_category.insert_one(obj)
+        self.db.taobao_crawl_log.insert_one(obj)
 
     def insert_data_list(self, objs):
         print('mongodb 正在处理 data_list 数据 len:{}'.format(len(objs)))

@@ -38,46 +38,57 @@ class TaobaoSpider(scrapy.Spider):
     def parse(self, response):
         print(response.url)
         tree = etree.HTML(response.text)
-        x = '//*[text()="家电办公" or text()="手机数码" or text()="护肤彩妆"]'
-        e_tree = tree.xpath(x)
+        # x = '//*[text()="家电办公" or text()="手机数码" or text()="护肤彩妆"]'
+        # xpath_list = ['//*[text()="家电办公"]', '//*[text()="手机数码"]', '//*[text()="护肤彩妆"]']
+        # xpath_list = ['//*[text()="手机数码"]']
+        xpath_dict = {'手机数码': '//*[text()="手机数码"]',
+                      '家电办公': '//*[text()="家电办公"]',
+                      '护肤彩妆': '//*[text()="护肤彩妆"]',
+                      }
+        xpath_dict = {
+            # '手机数码': '//*[text()="手机数码"]',
+            #           '家电办公': '//*[text()="家电办公"]',
+                      '护肤彩妆': '//*[text()="护肤彩妆"]',
+                      }
+        for k,v in xpath_dict.items():
+            e_tree = tree.xpath(v)
+            category_list = list()
 
+            for element in e_tree:
+                sub_elements = element.xpath('../ul/li')
+                for sub_element in sub_elements:
+                    p_category_name = sub_element.xpath('./a/text()')[0]
 
-        category_list = list()
+                    category_names_result = sub_element.xpath('./div/*[@class="category-name"]/text()')
+                    category_urls_result = sub_element.xpath('./div/*[@class="category-name"]/@href')
 
-        for element in e_tree:
-            sub_elements = element.xpath('../ul/li')
-            for sub_element in sub_elements:
-                p_category_name = sub_element.xpath('./a/text()')[0]
+                    for i in range(len(category_urls_result)):
+                        category_name = category_names_result[i]
+                        url = category_urls_result[i]
+                        complate_category_name = '{}:{}:{}'.format(k, p_category_name, category_name)
+                        category_list.append({'category_name': complate_category_name, 'category_url': url})
 
-                category_names_result = sub_element.xpath('./div/*[@class="category-name"]/text()')
-                category_urls_result = sub_element.xpath('./div/*[@class="category-name"]/@href')
-
-                for i in range(len(category_urls_result)):
-                    category_name = category_names_result[i]
-                    url = category_urls_result[i]
-                    complate_category_name = '{}:{}'.format(p_category_name,category_name)
-                    category_list.append({'category_name': complate_category_name,'category_url' : url})
-
-        i = 0
-        for category in category_list:
-            i += 1
-            item = TaobaoCategoryItem()
-            c_n = category['category_name']
-            c_url = category['category_url']
-            insert_date = datetime.now()
-            item['category_name'] = c_n
-            item['category_url'] = c_url
-            item['insert_date'] = insert_date
-            yield item
-            url = 'https:'+c_url
-            if 'kuaicai' in url:
-                pass
-            else:
-                # test_url = 'https://s.taobao.com/list?spm=a219r.lm872.0.0.ef4f4d1fNU7zkU&q=iphone&spu_title=%E8%8B%B9%E6%9E%9C+iPhone+8&app=detailproduct&pspuid=1544484&cat=1512&from_pos=20_1512.default_0_2_1544484&from_type=3c&spu_style=grid'
-                # yield Request(url=test_url, callback=self.parse_content, meta={'category_name': c_n, 'category_url':c_url})
-                yield Request(url='https:'+c_url, callback=self.parse_content, meta={'category_name': c_n, 'category_url':c_url})
-            # if i == 1:
-            #     return
+            i = 0
+            for category in category_list:
+                i += 1
+                item = TaobaoCategoryItem()
+                c_n = category['category_name']
+                c_url = category['category_url']
+                insert_date = datetime.now()
+                item['category_name'] = c_n
+                item['category_url'] = c_url
+                item['insert_date'] = insert_date
+                yield item
+                url = 'https:' + c_url
+                if 'kuaicai' in url:
+                    pass
+                else:
+                    # test_url = 'https://s.taobao.com/list?spm=a219r.lm872.0.0.ef4f4d1fNU7zkU&q=iphone&spu_title=%E8%8B%B9%E6%9E%9C+iPhone+8&app=detailproduct&pspuid=1544484&cat=1512&from_pos=20_1512.default_0_2_1544484&from_type=3c&spu_style=grid'
+                    # yield Request(url=test_url, callback=self.parse_content, meta={'category_name': c_n, 'category_url':c_url})
+                    yield Request(url='https:' + c_url, callback=self.parse_content,
+                                  meta={'category_name': c_n, 'category_url': c_url})
+                    # if i == 1:
+                    #     return
 
 
     def parse_content(self, response):

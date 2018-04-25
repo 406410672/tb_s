@@ -68,7 +68,8 @@ class TaobaoScrapyPipeline(object):
             'category_url': category_url,
             'page_name': page_name,
             'category_info': data_info,
-            'request_url': request_url
+            'request_url': request_url,
+            'insert_time': insert_date
         }
         if type == TYPE_LISTSRP:
             for data_item in data_list:
