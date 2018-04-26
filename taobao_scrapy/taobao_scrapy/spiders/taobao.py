@@ -51,7 +51,7 @@ class TaobaoSpider(scrapy.Spider):
             '手机数码': '//*[text()="手机数码"]',
                       '家电办公': '//*[text()="家电办公"]',
             '珠宝配饰' : '//*[text()="珠宝配饰"]',
-            #           '护肤彩妆': '//*[text()="护肤彩妆"]',
+                      '护肤彩妆': '//*[text()="护肤彩妆"]',
                       }
         for k,v in xpath_dict.items():
             e_tree = tree.xpath(v)
@@ -85,7 +85,7 @@ class TaobaoSpider(scrapy.Spider):
                 if 'kuaicai' in url:
                     pass
                 else:
-                    # test_url = 'https://s.taobao.com/list?spm=a21bo.7723600.8559.21.47bb5ec9LPA7Ds&seller_type=taobao&q=BB%E9%9C%9C&pvid=f329390a-d387-43e6-9f6a-43ea7810f1bc&scm=1007.11287.5866.100200300000000'
+                    # test_url = 'https://s.taobao.com/list?q=%E9%9D%A2%E9%9C%9C&cat=1801%2C50071436%2C50010788&style=grid&seller_type=taobao&spm=a219r.lm843.1000187.1'
                     # yield Request(url=test_url, callback=self.parse_content, meta={'category_name': c_n, 'category_url':c_url})
                     yield Request(url='https:' + c_url, callback=self.parse_content,
                                   meta={'category_name': c_n, 'category_url': c_url})
@@ -93,6 +93,7 @@ class TaobaoSpider(scrapy.Spider):
                     #     return
 
     def parse_content(self, response):
+        print('当前key:{}'.format(self.nav_cat_key_set))
         meta = response.meta
         category_name = meta['category_name']
         category_url = meta['category_url']

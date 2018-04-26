@@ -76,7 +76,7 @@ class TaobaoScrapyPipeline(object):
                 data_item['category_name'] = category_name
                 data_item['category_url'] = category_url
                 data_item['insert_time'] = datetime.now()
-                data_item['_id'] = data_item.get('nid')
+                # data_item['_id'] = data_item.get('nid')
             self.dbmanager.insert_category_info(data_info_insert)
             self.dbmanager.insert_data_list(data_list)
         elif type == TYPE_MAINSRP:
@@ -96,7 +96,7 @@ class TaobaoScrapyPipeline(object):
                 data_item['category_name'] = category_name
                 data_item['category_url'] = category_url
                 data_item['insert_time'] = datetime.now()
-                data_item['_id'] = data_item.get('nid')
+                # data_item['_id'] = data_item.get('nid')
                 data_item['category_name_level_2'] = category_name_level_2
             self.dbmanager.insert_category_info(data_info_insert)
             self.dbmanager.insert_data_list(data_list)
