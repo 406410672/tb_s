@@ -30,7 +30,7 @@ class TaobaoSpider(scrapy.Spider):
     allowed_domains = ['taobao.com']
     root_url = 'https://www.taobao.com/markets/tbhome/market-list'
     logger = HTLogger('taobao.log')
-    nav_cat_set = set()
+    nav_cat_key_set = set()
 
 
     def start_requests(self):
@@ -50,6 +50,7 @@ class TaobaoSpider(scrapy.Spider):
         xpath_dict = {
             # '手机数码': '//*[text()="手机数码"]',
             #           '家电办公': '//*[text()="家电办公"]',
+            # '珠宝配饰' : '//*[text()="珠宝配饰"]',
                       '护肤彩妆': '//*[text()="护肤彩妆"]',
                       }
         for k,v in xpath_dict.items():
@@ -84,7 +85,7 @@ class TaobaoSpider(scrapy.Spider):
                 if 'kuaicai' in url:
                     pass
                 else:
-                    # test_url = 'https://s.taobao.com/list?spm=a219r.lm872.0.0.ef4f4d1fNU7zkU&q=iphone&spu_title=%E8%8B%B9%E6%9E%9C+iPhone+8&app=detailproduct&pspuid=1544484&cat=1512&from_pos=20_1512.default_0_2_1544484&from_type=3c&spu_style=grid'
+                    # test_url = 'https://s.taobao.com/list?spm=a21bo.7723600.8559.21.47bb5ec9LPA7Ds&seller_type=taobao&q=BB%E9%9C%9C&pvid=f329390a-d387-43e6-9f6a-43ea7810f1bc&scm=1007.11287.5866.100200300000000'
                     # yield Request(url=test_url, callback=self.parse_content, meta={'category_name': c_n, 'category_url':c_url})
                     yield Request(url='https:' + c_url, callback=self.parse_content,
                                   meta={'category_name': c_n, 'category_url': c_url})
@@ -146,26 +147,43 @@ class TaobaoSpider(scrapy.Spider):
             item['data_info'] = data_info
             item['data_list'] = data_list
             yield item
+
+            og_url = response.url
             #先进行分类，再进行分页
             #取sub数量最最大的分类列表
             #判断如果URL中存在key则不进行插入参数
-            try:
-                nav_category_list = g_page_config.get('mods').get('nav').get('data').get('common')
-                max_category_item = None
 
-                for nav_category in nav_category_list:
-                    if max_category_item == None:
-                        max_category_item = nav_category
-                    else:
-                        if len(max_category_item.get('sub')) < len(nav_category.get('sub')):
+            allow_add_cat = True
+            for cat_key in self.nav_cat_key_set:
+                if cat_key in og_url:
+                    allow_add_cat = False
+                    break
+            if allow_add_cat == True:
+                print('需要添加分类')
+                try:
+                    nav_category_list = g_page_config.get('mods').get('nav').get('data').get('common')
+                    max_category_item = None
+
+                    for nav_category in nav_category_list:
+                        if max_category_item == None:
                             max_category_item = nav_category
-                if max_category_item != None:
-                    max_category_subs = max_category_item.get('sub')
-
-
-            except Exception as error:
-                print('获取分类失败 ：{}'.format(error))
-
+                        else:
+                            if len(max_category_item.get('sub')) < len(nav_category.get('sub')):
+                                max_category_item = nav_category
+                    if max_category_item != None:
+                        max_category_subs = max_category_item.get('sub')
+                        for category_sub in max_category_subs:
+                            key = category_sub['key']
+                            value = category_sub['value']
+                            self.nav_cat_key_set.add(key)
+                            new_url = og_url+'&{}={}'.format(key, value)
+                            print('新的分类url:{}'.format(new_url))
+                            print('cat_key_set:{}'.format(self.nav_cat_key_set))
+                            yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name, 'category_url': category_url})
+                    #增加完分类后不进行下面的操作
+                    return
+                except Exception as error:
+                    print('获取分类失败 ：{}'.format(error))
 
             if data_info != None:
                 page_size = data_info.get('pageSize')
@@ -183,7 +201,7 @@ class TaobaoSpider(scrapy.Spider):
                         new_url = og_url+'&s=60'
                     else:
                         new_url = og_url.replace(s_value_list[0], 's=%d'%(int(page_size)*int(current_page)))
-                    print('新的url:{}'.format(new_url))
+                    print('新的页面url:{}'.format(new_url))
                     yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name, 'category_url':category_url})
 
         elif page_name == 'listsrp':
@@ -197,6 +215,44 @@ class TaobaoSpider(scrapy.Spider):
             item['data_info'] = data_info
             item['data_list'] = data_list
             yield item
+
+            og_url = response.url
+            #先进行分类，再进行分页
+            #取sub数量最最大的分类列表
+            #判断如果URL中存在key则不进行插入参数
+
+            allow_add_cat = True
+            for cat_key in self.nav_cat_key_set:
+                if cat_key in og_url:
+                    allow_add_cat = False
+                    break
+            if allow_add_cat == True:
+                print('需要添加分类')
+                try:
+                    nav_category_list = g_page_config.get('mods').get('nav').get('data').get('common')
+                    max_category_item = None
+
+                    for nav_category in nav_category_list:
+                        if max_category_item == None:
+                            max_category_item = nav_category
+                        else:
+                            if len(max_category_item.get('sub')) < len(nav_category.get('sub')):
+                                max_category_item = nav_category
+                    if max_category_item != None:
+                        max_category_subs = max_category_item.get('sub')
+                        for category_sub in max_category_subs:
+                            key = category_sub['key']
+                            value = category_sub['value']
+                            self.nav_cat_key_set.add(key)
+                            new_url = og_url+'&{}={}'.format(key, value)
+                            print('新的分类url:{}'.format(new_url))
+                            print('cat_key_set:{}'.format(self.nav_cat_key_set))
+                            yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name, 'category_url': category_url})
+                    #增加完分类后不进行下面的操作
+                    return
+                except Exception as error:
+                    print('获取分类失败 ：{}'.format(error))
+
             if data_info != None:
                 page_size = data_info.get('pageSize')
                 totalCount = data_info.get('totalCount')
@@ -213,8 +269,9 @@ class TaobaoSpider(scrapy.Spider):
                         new_url = og_url+'&s=60'
                     else:
                         new_url = og_url.replace(s_value_list[0], 's=%d'%(int(page_size)*int(current_page)))
-                    print('新的url:{}'.format(new_url))
+                    print('新的页面url:{}'.format(new_url))
                     yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name, 'category_url':category_url})
+
 
         elif page_name == 'spulist':
             data_list = g_page_config.get('mods').get('grid').get('data').get('spus')
@@ -253,6 +310,3 @@ class TaobaoSpider(scrapy.Spider):
                 print('spulist 下的新请求的url:{}'.format(new_url))
                 yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name,'category_name_level_2': data.get('title'), 'category_url':category_url})
         return
-
-    def parser_spu_detail(self, response):
-        pass

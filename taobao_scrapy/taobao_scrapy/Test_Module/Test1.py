@@ -8,15 +8,13 @@ import gevent
 import requests
 import urllib.request
 
-def f(url):
-    print('GET: %s' % url)
-    resp = requests.get(url)
-    data = resp.text
-    print('%d bytes received from %s.' % (len(data), url))
 
-# f('https://www.python.org/')
-gevent.joinall([
-        gevent.spawn(f, 'https://www.python.org/'),
-        gevent.spawn(f, 'https://www.yahoo.com/'),
-        gevent.spawn(f, 'https://www.baidu.com/'),
-])
+d = set()
+
+d.add('123')
+d.add('213')
+d.add('1rqr')
+# print(d)
+url = 'www.http213.com'
+for d in d:
+    print(d in url)

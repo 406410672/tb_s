@@ -54,3 +54,15 @@ class TaobaoScrapySpiderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+class MyCustomDownloaderMiddleware(object):
+
+    def process_request(self, request, spider):
+        return None
+
+    def process_response(self, request, response, spider):
+        print('response URL:{}'.format(response.url))
+        if 'http://err.taobao.com/' in response.url:
+            print('重新下载request:{}  因为response跳转到其它链接：{}报错了'.format(request, response.url))
+            return request
+        return response
