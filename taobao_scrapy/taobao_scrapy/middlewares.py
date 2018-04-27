@@ -6,7 +6,8 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
+from scrapy.utils.misc import load_object
+from taobao_scrapy.BaseModule import HTTPRequest
 
 class TaobaoScrapySpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -58,6 +59,11 @@ class TaobaoScrapySpiderMiddleware(object):
 class MyCustomDownloaderMiddleware(object):
 
     def process_request(self, request, spider):
+        try:
+            f = getattr(HTTPRequest, 'user_agent')
+            request.headers["User-Agent"] = f()
+        except AttributeError as error:
+            print('has no attribute user_agent')
         return None
 
     def process_response(self, request, response, spider):
@@ -66,3 +72,7 @@ class MyCustomDownloaderMiddleware(object):
             print('重新下载request:{}  因为response跳转到其它链接：{}报错了'.format(request, response.url))
             return request
         return response
+
+
+if __name__ == '__main__':
+    f = getattr(HTTPRequest, 'user_agent')
