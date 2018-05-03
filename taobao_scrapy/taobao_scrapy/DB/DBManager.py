@@ -47,7 +47,7 @@ class DBManager(object):
         print('category_info len:{}'.format(len(self.category_info_list)))
         self.category_info_list.append(obj)
         if len(self.category_info_list) > 50:
-            self.db.taobao_crawl_log.insert_many(self.category_info_list)
+            self.db.taobao_crawl_log.insert_many(self.category_info_list, ordered=False)
             del self.category_info_list[:]
 
     def insert_data_list(self, objs):
@@ -60,7 +60,7 @@ class DBManager(object):
                 #去重
                 # for data in range(len(self.data_list)):
 
-                self.db.taobao_item.insert_many(self.data_list)
+                self.db.taobao_item.insert_many(self.data_list, ordered=False)
             except DuplicateKeyError as error:
                 print('data_list数据操作报错 有重复的nid error_info:{}'.format(error))
             except Exception as error:
@@ -74,7 +74,7 @@ class DBManager(object):
         self.spu_list.extend(objs)
         if len(self.spu_list) >= 500 :
             try:
-                self.db.taobao_spu.insert_many(self.spu_list)
+                self.db.taobao_spu.insert_many(self.spu_list, ordered=False)
             except DuplicateKeyError as error:
                 print('spu数据操作报错 有重复的nid error_info:{}'.format(error))
             except Exception as error:
@@ -85,15 +85,15 @@ class DBManager(object):
     def handle_signal(self, signum, frame):
         print('处理信号')
         try:
-            self.db.taobao_spu.insert_many(self.spu_list)
+            self.db.taobao_spu.insert_many(self.spu_list, ordered=False)
         finally:
             del self.spu_list[:]
         try:
-            self.db.taobao_crawl_log.insert_many(self.category_info_list)
+            self.db.taobao_crawl_log.insert_many(self.category_info_list, ordered=False)
         finally:
             del self.category_info_list[:]
         try:
-            self.db.taobao_item.insert_many(self.data_list)
+            self.db.taobao_item.insert_many(self.data_list, ordered=False)
         finally:
             del self.data_list[:]
         quit()
