@@ -93,7 +93,7 @@ ITEM_PIPELINES = {
 DNSCACHE_ENABLE = True
 
 
-#scrapy -redis
+################################################scrapy -redis
 # 启用Redis调度存储请求队列
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 

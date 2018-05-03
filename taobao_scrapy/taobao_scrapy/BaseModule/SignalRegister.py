@@ -20,7 +20,7 @@ class SignalRegister(object):
         # signal.signal(signal.SIGQUIT, handler)  # 3
         # signal.signal(signal.SIGALRM, handler)  # 14
         signal.signal(signal.SIGTERM, handler)  # 15
-        signal.signal(signal.SIGBREAK, handler)  # 15
+        # signal.signal(signal.SIGBREAK, handler)  # 15
         # signal.signal(signal.SIGCONT, handler)  # 18
 
 

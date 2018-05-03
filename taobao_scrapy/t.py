@@ -29,6 +29,7 @@ def count():
     {'spulist': 36, 'spudetail': 1, 'mainsrp': 38, 'listsrp': 105}
      二级分类                         列表            列表
     '''
+from gevent import monkey
 
 def reText():
     dd = '''
