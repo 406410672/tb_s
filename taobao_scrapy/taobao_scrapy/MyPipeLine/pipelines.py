@@ -34,7 +34,7 @@ class TaobaoScrapyPipeline(object):
     # items_file = open('items.txt', mode='w')
 
     def process_item(self, item, spider):
-        print('piplelines accept data :{}'.format(type(item)))
+        # print('piplelines accept data :{}'.format(type(item)))
         if isinstance(item, TaobaoCategoryItem):
             category_name = item['category_name']
             category_url = item['category_url']

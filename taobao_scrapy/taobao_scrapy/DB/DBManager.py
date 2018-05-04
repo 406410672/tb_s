@@ -28,7 +28,7 @@ class DBManager(object):
         configloader = Configloader()
         uri = "mongodb://%s:%s@%s" % (quote_plus(configloader.mongodb_user()), quote_plus(configloader.mongodb_password()), configloader.mongodb_host())
         self.mgdbManager = pymongo.MongoClient(uri)
-        self.db = self.mgdbManager.taobao5
+        self.db = self.mgdbManager.taobao6
 
         self.category_info_list = []
         self.data_list = []
