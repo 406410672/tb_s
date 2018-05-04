@@ -67,7 +67,7 @@ class MyCustomDownloaderMiddleware(object):
         return None
 
     def process_response(self, request, response, spider):
-        print('response URL:{}'.format(response.url))
+        print('request URL: {}\nresponse URL:{}'.format(request.url, response.url))
         if 'http://err.taobao.com/' in response.url:
             print('重新下载request:{}  因为response跳转到其它链接：{}报错了'.format(request, response.url))
             return request

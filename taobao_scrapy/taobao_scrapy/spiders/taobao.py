@@ -85,12 +85,122 @@ class TaobaoSpider(scrapy.Spider):
                 if 'kuaicai' in url:
                     pass
                 else:
-                    # test_url = 'https://s.taobao.com/list?spm=a21bo.7723600.8559.4.6ad85ec9p7NmhF&seller_type=taobao&q=%E9%9D%A2%E8%86%9C'
+                    # test_url = 'https://s.taobao.com/list?q=%E6%82%A6%E8%AF%97%E9%A3%8E%E5%90%9F&cat=1801%2C50071436%2C50010788%3B50011977%3B50011981%3B50011977%3B50011981%3B50011979%3B50011979%3B50011979%3B50011978%3B50011979%3B50011977&style=grid&seller_type=taobao&spm=a219r.lm843.1000187.1'
                     # yield Request(url=test_url, callback=self.parse_content, meta={'category_name': c_n, 'category_url':c_url})
                     yield Request(url='https:' + c_url, callback=self.parse_content,
                                   meta={'category_name': c_n, 'category_url': c_url})
-                    # if i == 1:
+
+                    # return
+
+    def parse_test(self, response):
+        print('当前key:{}'.format(self.nav_cat_key_set))
+        meta = response.meta
+        category_name = meta['category_name']
+        category_url = meta['category_url']
+        content = response.text
+        request_url = response.url
+        g_page_config = TaobaoParse.get_page_config(content)
+        page_name = g_page_config.get('pageName')
+        insert_date = datetime.now()
+        data_info = g_page_config.get('mods').get('sortbar').get('data').get('pager')
+
+        # print(response.text)
+        if page_name == 'listsrp':
+            data_list = g_page_config.get('mods').get('itemlist').get('data').get('auctions')
+            item = TaoBaolistsrpItem()
+            item['category_name'] = category_name
+            item['category_url'] = category_url
+            item['insert_date'] = insert_date
+            item['request_url'] = request_url
+            item['page_name'] = page_name
+            item['data_info'] = data_info
+            item['data_list'] = data_list
+            yield item
+
+            og_url = response.url
+            #先进行分类，假如页面数量大于100，则进行再次分类
+            #如果 key = path 则是叠加
+            #如果 key = cat 则是覆盖
+            #再进行分页
+
+            if data_info != None:
+                page_size = data_info.get('pageSize')
+                totalCount = data_info.get('totalCount')
+                current_page = data_info.get('currentPage')
+                total_page = data_info.get('totalPage')
+
+                self.logger.debug('category_name:{}'.format(category_name))
+                self.logger.debug('page_name:{}'.format(page_name))
+                self.logger.debug('page_size:{}'.format(page_size))
+                self.logger.debug('totalCount:{}'.format(totalCount))
+                self.logger.debug('current_page:{}'.format(current_page))
+                self.logger.debug('total_page:{}'.format(total_page))
+                max_totalpage = 95
+
+                if int(total_page) > max_totalpage:
+                    self.logger.error('url:{} \n页面数量大于{}，该页面需要添加分类'.format(og_url, max_totalpage))
+                    try:
+                        nav_category_list = g_page_config.get('mods').get('nav').get('data').get('common')
+                        max_category_item = nav_category_list[0]
+                        if max_category_item != None:
+                            max_category_subs = max_category_item.get('sub')
+                            for category_sub in max_category_subs:
+                                key = category_sub['key']
+                                value = category_sub['value']
+                                self.nav_cat_key_set.add(key)
+
+                                new_url = None
+
+                                re_regex = "&({}=[^&]*)".format(key)
+                                if key == 'cat':
+                                    try:
+                                        self.logger.debug('re_regex =%s' % (re_regex))
+                                        find_parm = re.findall(re_regex, og_url)
+                                        self.logger.debug('find_parm %s' % (find_parm))
+                                        find_parm = find_parm[0]
+                                        new_parm = '%s=%s' % (key, value)
+                                        new_url = og_url.replace(find_parm, new_parm)
+                                        self.logger.debug('{}下 新的分类url:{}'.format(find_parm, new_url))
+                                    except Exception as error:
+                                        self.logger.error('正则表达式没有找到url {}'.format(error))
+                                else:
+                                    if key in og_url:
+                                        try:
+                                            self.logger.debug('re_regex =%s' % (re_regex))
+                                            find_parm = re.findall(re_regex, og_url)
+                                            self.logger.debug('find_parm %s' % (find_parm))
+                                            find_parm = find_parm[0]
+                                            new_parm = '%s;%s' % (find_parm, value)
+                                            new_url = og_url.replace(find_parm, new_parm)
+                                            self.logger.debug('{}下 新的分类url:{}'.format(find_parm, new_url))
+
+                                        except Exception as error:
+                                            self.logger.error('正则表达式没有找到url {}'.format(error))
+                                    else:
+                                        new_url = og_url + '&{}={}'.format(key, value)
+                                        self.logger.debug('新的分类url:{}'.format(new_url))
+
+                                # print('cat_key_set:{}'.format(self.nav_cat_key_set))
+                                yield Request(url=new_url, callback=self.parse_content,
+                                              meta={'category_name': category_name, 'category_url': category_url})
+                                print('new 分类 URL:{}'.format(new_url))
+                        return
+                    except Exception as error:
+                        self.logger.error('获取分类失败与分页处理失败 ：{}'.format(error))
+                    # if have_error == False:
                     #     return
+
+                if int(current_page) * int(page_size) < int(totalCount):
+                    og_url = response.url
+                    s_value_list = re.findall('&(s=\d*)', og_url)
+                    if len(s_value_list) == 0 and int(current_page) == 1:
+                        new_url = og_url+'&s=60'
+                    else:
+                        new_url = og_url.replace(s_value_list[0], 's=%d'%(int(page_size)*int(current_page)))
+                    self.logger.debug('下一页:{}'.format(new_url))
+                    yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name, 'category_url':category_url})
+
+                    print('new 下一页 URL:{}'.format(new_url))
 
     def parse_content(self, response):
         print('当前key:{}'.format(self.nav_cat_key_set))
@@ -150,9 +260,10 @@ class TaobaoSpider(scrapy.Spider):
             yield item
 
             og_url = response.url
-            #先进行分类，再进行分页
-            #取sub数量最最大的分类列表
-            #判断如果URL中存在key则不进行插入参数
+            #先进行分类，假如页面数量大于100，则进行再次分类
+            #如果 key = path 则是叠加
+            #如果 key = cat 则是覆盖
+            #再进行分页
 
             # allow_add_cat = True
             # for cat_key in self.nav_cat_key_set:
@@ -255,63 +366,10 @@ class TaobaoSpider(scrapy.Spider):
             yield item
 
             og_url = response.url
-            #先进行分类，再进行分页
-            #取sub数量最最大的分类列表
-            #判断如果URL中存在key则不进行插入参数
-
-            # allow_add_cat = True
-            # for cat_key in self.nav_cat_key_set:
-            #     if cat_key in og_url:
-            #         allow_add_cat = False
-            #         break
-            # if allow_add_cat == True:
-            #     print('需要添加分类')
-            #     try:
-            #         nav_category_list = g_page_config.get('mods').get('nav').get('data').get('common')
-            #         max_category_item = None
-            #
-            #         for nav_category in nav_category_list:
-            #             if max_category_item == None:
-            #                 max_category_item = nav_category
-            #             else:
-            #                 if len(max_category_item.get('sub')) < len(nav_category.get('sub')):
-            #                     max_category_item = nav_category
-            #         if max_category_item != None:
-            #             max_category_subs = max_category_item.get('sub')
-            #             for category_sub in max_category_subs:
-            #                 key = category_sub['key']
-            #                 value = category_sub['value']
-            #                 self.nav_cat_key_set.add(key)
-            #                 new_url = og_url+'&{}={}'.format(key, value)
-            #                 print('新的分类url:{}'.format(new_url))
-            #                 print('cat_key_set:{}'.format(self.nav_cat_key_set))
-            #                 yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name, 'category_url': category_url})
-            #         #增加完分类后不进行下面的操作
-            #         return
-            #     except Exception as error:
-            #         print('获取分类失败 ：{}'.format(error))
-            #
-            # if data_info != None:
-            #     page_size = data_info.get('pageSize')
-            #     totalCount = data_info.get('totalCount')
-            #     current_page = data_info.get('currentPage')
-            #     print('category_name:{}'.format(category_name))
-            #     print('page_name:{}'.format(page_name))
-            #     print('page_size:{}'.format(page_size))
-            #     print('totalCount:{}'.format(totalCount))
-            #     print('current_page:{}'.format(current_page))
-            #     if int(current_page) * int(page_size) < int(totalCount):
-            #         og_url = response.url
-            #         s_value_list = re.findall('&(s=\d*)', og_url)
-            #         if len(s_value_list) == 0 and int(current_page) == 1:
-            #             new_url = og_url + '&s=60'
-            #         else:
-            #             new_url = og_url.replace(s_value_list[0], 's=%d' % (int(page_size) * int(current_page)))
-            #         print('新的页面url:{}'.format(new_url))
-            #         yield Request(url=new_url, callback=self.parse_content,
-            #                       meta={'category_name': category_name, 'category_url': category_url})
-
-
+            #先进行分类，假如页面数量大于100，则进行再次分类
+            #如果 key = path 则是叠加
+            #如果 key = cat 则是覆盖
+            #再进行分页
 
             if data_info != None:
                 page_size = data_info.get('pageSize')
@@ -325,7 +383,8 @@ class TaobaoSpider(scrapy.Spider):
                 self.logger.debug('totalCount:{}'.format(totalCount))
                 self.logger.debug('current_page:{}'.format(current_page))
                 self.logger.debug('total_page:{}'.format(total_page))
-                max_totalpage = 90
+                max_totalpage = 95
+
                 if int(total_page) > max_totalpage:
                     self.logger.error('url:{} \n页面数量大于{}，该页面需要添加分类'.format(og_url, max_totalpage))
                     try:
@@ -339,30 +398,46 @@ class TaobaoSpider(scrapy.Spider):
                                 self.nav_cat_key_set.add(key)
 
                                 new_url = None
-                                if key in og_url:
+
+                                re_regex = "&({}=[^&]*)".format(key)
+                                if key == 'cat':
                                     try:
-                                        re_regex = "&({}=[^&]*)".format(key)
                                         self.logger.debug('re_regex =%s' % (re_regex))
                                         find_parm = re.findall(re_regex, og_url)
-                                        self.logger.debug('find_parm %s'%(find_parm))
+                                        self.logger.debug('find_parm %s' % (find_parm))
                                         find_parm = find_parm[0]
-                                        new_parm = '%s;%s'%(find_parm, value)
+                                        new_parm = '%s=%s' % (key, value)
                                         new_url = og_url.replace(find_parm, new_parm)
                                         self.logger.debug('{}下 新的分类url:{}'.format(find_parm, new_url))
-
                                     except Exception as error:
                                         self.logger.error('正则表达式没有找到url {}'.format(error))
                                 else:
-                                    new_url = og_url + '&{}={}'.format(key, value)
-                                    self.logger.debug('新的分类url:{}'.format(new_url))
+                                    if key in og_url:
+                                        try:
+                                            self.logger.debug('re_regex =%s' % (re_regex))
+                                            find_parm = re.findall(re_regex, og_url)
+                                            self.logger.debug('find_parm %s' % (find_parm))
+                                            find_parm = find_parm[0]
+                                            new_parm = '%s;%s' % (find_parm, value)
+                                            new_url = og_url.replace(find_parm, new_parm)
+                                            self.logger.debug('{}下 新的分类url:{}'.format(find_parm, new_url))
+
+                                        except Exception as error:
+                                            self.logger.error('正则表达式没有找到url {}'.format(error))
+                                    else:
+                                        new_url = og_url + '&{}={}'.format(key, value)
+                                        self.logger.debug('新的分类url:{}'.format(new_url))
 
                                 # print('cat_key_set:{}'.format(self.nav_cat_key_set))
                                 yield Request(url=new_url, callback=self.parse_content,
                                               meta={'category_name': category_name, 'category_url': category_url})
+                        return
                     except Exception as error:
                         self.logger.error('获取分类失败与分页处理失败 ：{}'.format(error))
-                    return
-                elif int(current_page) * int(page_size) < int(totalCount):
+                    # if have_error == False:
+                    #     return
+
+                if int(current_page) * int(page_size) < int(totalCount):
                     og_url = response.url
                     s_value_list = re.findall('&(s=\d*)', og_url)
                     if len(s_value_list) == 0 and int(current_page) == 1:
