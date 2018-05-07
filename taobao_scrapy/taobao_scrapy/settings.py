@@ -66,6 +66,7 @@ DOWNLOADER_MIDDLEWARES = {
 ITEM_PIPELINES = {
    # 'taobao_scrapy.pipelines.TaobaoScrapyPipeline': 300,
    'taobao_scrapy.MyPipeLine.pipelines.TaobaoScrapyPipeline': 1,
+   'taobao_scrapy.MyPipeLine.pipelines.TaobaoItemDetailPipeline': 2,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

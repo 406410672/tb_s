@@ -66,6 +66,9 @@ class TaoBaospudetailItem(TaoBaoBaseItem):
     # data_list = scrapy.Field()
 
 
+class TaoBaoItemDetailItem(scrapy.Item):
+    pass
+
 if __name__ == '__main__':
     # item = TaobaoDetailItem()
     # item['content'] =' 23'

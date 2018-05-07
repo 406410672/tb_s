@@ -28,7 +28,7 @@ class DBManager(object):
         configloader = Configloader()
         uri = "mongodb://%s:%s@%s" % (quote_plus(configloader.mongodb_user()), quote_plus(configloader.mongodb_password()), configloader.mongodb_host())
         self.mgdbManager = pymongo.MongoClient(uri)
-        self.db = self.mgdbManager.taobao6
+        self.db = self.mgdbManager.taobao7
 
         self.category_info_list = []
         self.data_list = []
@@ -51,6 +51,11 @@ class DBManager(object):
             del self.category_info_list[:]
 
     def insert_data_list(self, objs):
+        '''
+        商品列表的item
+        :param objs:
+        :return:
+        '''
         print('mongodb 正在处理 data_list 数据 len:{}'.format(len(objs)))
 
         print('data_list len:{}'.format(len(self.data_list)))
@@ -97,6 +102,13 @@ class DBManager(object):
         finally:
             del self.data_list[:]
         quit()
+
+    def insert_detail_item(self, obj):
+        '''
+        淘宝详情item
+        :return:
+        '''
+        pass
 
 if __name__ == '__main__':
     db = DBManager()

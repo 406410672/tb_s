@@ -21,10 +21,10 @@ from scrapy.http import Request
 from taobao_scrapy.MyItems.items import (TaobaoCategoryItem,
                                          TaoBaolistsrpItem, TaoBaospulistItem, TaoBaomainsrpItem, TaoBaospudetailItem)
 
-from taobao_scrapy.BaseModule.TaobaoParse import TaobaoParse
+from taobao_scrapy.BaseModule.TaobaoParse import TaobaoParse, TaobaoItemDetailParse
 from taobao_scrapy.BaseModule.HTLogger import HTLogger
-
-
+from taobao_scrapy.Exceptions.ParserException import TaoBaoItemParserException
+from taobao_scrapy.Util.StrHandle import *
 class TaobaoSpider(scrapy.Spider):
     name = 'TaobaoSpider'
     allowed_domains = ['taobao.com']
@@ -49,9 +49,9 @@ class TaobaoSpider(scrapy.Spider):
                       }
         xpath_dict = {
             # '手机数码': '//*[text()="手机数码"]',
-            #           '家电办公': '//*[text()="家电办公"]',
+                      '家电办公': '//*[text()="家电办公"]',
             # '珠宝配饰' : '//*[text()="珠宝配饰"]',
-                      '护肤彩妆': '//*[text()="护肤彩妆"]',
+            #           '护肤彩妆': '//*[text()="护肤彩妆"]',
                       }
         for k,v in xpath_dict.items():
             e_tree = tree.xpath(v)
@@ -85,122 +85,12 @@ class TaobaoSpider(scrapy.Spider):
                 if 'kuaicai' in url:
                     pass
                 else:
-                    # test_url = 'https://s.taobao.com/list?q=%E6%82%A6%E8%AF%97%E9%A3%8E%E5%90%9F&cat=1801%2C50071436%2C50010788%3B50011977%3B50011981%3B50011977%3B50011981%3B50011979%3B50011979%3B50011979%3B50011978%3B50011979%3B50011977&style=grid&seller_type=taobao&spm=a219r.lm843.1000187.1'
-                    # yield Request(url=test_url, callback=self.parse_content, meta={'category_name': c_n, 'category_url':c_url})
-                    yield Request(url='https:' + c_url, callback=self.parse_content,
-                                  meta={'category_name': c_n, 'category_url': c_url})
-
-                    # return
-
-    def parse_test(self, response):
-        print('当前key:{}'.format(self.nav_cat_key_set))
-        meta = response.meta
-        category_name = meta['category_name']
-        category_url = meta['category_url']
-        content = response.text
-        request_url = response.url
-        g_page_config = TaobaoParse.get_page_config(content)
-        page_name = g_page_config.get('pageName')
-        insert_date = datetime.now()
-        data_info = g_page_config.get('mods').get('sortbar').get('data').get('pager')
-
-        # print(response.text)
-        if page_name == 'listsrp':
-            data_list = g_page_config.get('mods').get('itemlist').get('data').get('auctions')
-            item = TaoBaolistsrpItem()
-            item['category_name'] = category_name
-            item['category_url'] = category_url
-            item['insert_date'] = insert_date
-            item['request_url'] = request_url
-            item['page_name'] = page_name
-            item['data_info'] = data_info
-            item['data_list'] = data_list
-            yield item
-
-            og_url = response.url
-            #先进行分类，假如页面数量大于100，则进行再次分类
-            #如果 key = path 则是叠加
-            #如果 key = cat 则是覆盖
-            #再进行分页
-
-            if data_info != None:
-                page_size = data_info.get('pageSize')
-                totalCount = data_info.get('totalCount')
-                current_page = data_info.get('currentPage')
-                total_page = data_info.get('totalPage')
-
-                self.logger.debug('category_name:{}'.format(category_name))
-                self.logger.debug('page_name:{}'.format(page_name))
-                self.logger.debug('page_size:{}'.format(page_size))
-                self.logger.debug('totalCount:{}'.format(totalCount))
-                self.logger.debug('current_page:{}'.format(current_page))
-                self.logger.debug('total_page:{}'.format(total_page))
-                max_totalpage = 95
-
-                if int(total_page) > max_totalpage:
-                    self.logger.error('url:{} \n页面数量大于{}，该页面需要添加分类'.format(og_url, max_totalpage))
-                    try:
-                        nav_category_list = g_page_config.get('mods').get('nav').get('data').get('common')
-                        max_category_item = nav_category_list[0]
-                        if max_category_item != None:
-                            max_category_subs = max_category_item.get('sub')
-                            for category_sub in max_category_subs:
-                                key = category_sub['key']
-                                value = category_sub['value']
-                                self.nav_cat_key_set.add(key)
-
-                                new_url = None
-
-                                re_regex = "&({}=[^&]*)".format(key)
-                                if key == 'cat':
-                                    try:
-                                        self.logger.debug('re_regex =%s' % (re_regex))
-                                        find_parm = re.findall(re_regex, og_url)
-                                        self.logger.debug('find_parm %s' % (find_parm))
-                                        find_parm = find_parm[0]
-                                        new_parm = '%s=%s' % (key, value)
-                                        new_url = og_url.replace(find_parm, new_parm)
-                                        self.logger.debug('{}下 新的分类url:{}'.format(find_parm, new_url))
-                                    except Exception as error:
-                                        self.logger.error('正则表达式没有找到url {}'.format(error))
-                                else:
-                                    if key in og_url:
-                                        try:
-                                            self.logger.debug('re_regex =%s' % (re_regex))
-                                            find_parm = re.findall(re_regex, og_url)
-                                            self.logger.debug('find_parm %s' % (find_parm))
-                                            find_parm = find_parm[0]
-                                            new_parm = '%s;%s' % (find_parm, value)
-                                            new_url = og_url.replace(find_parm, new_parm)
-                                            self.logger.debug('{}下 新的分类url:{}'.format(find_parm, new_url))
-
-                                        except Exception as error:
-                                            self.logger.error('正则表达式没有找到url {}'.format(error))
-                                    else:
-                                        new_url = og_url + '&{}={}'.format(key, value)
-                                        self.logger.debug('新的分类url:{}'.format(new_url))
-
-                                # print('cat_key_set:{}'.format(self.nav_cat_key_set))
-                                yield Request(url=new_url, callback=self.parse_content,
-                                              meta={'category_name': category_name, 'category_url': category_url})
-                                print('new 分类 URL:{}'.format(new_url))
-                        return
-                    except Exception as error:
-                        self.logger.error('获取分类失败与分页处理失败 ：{}'.format(error))
-                    # if have_error == False:
-                    #     return
-
-                if int(current_page) * int(page_size) < int(totalCount):
-                    og_url = response.url
-                    s_value_list = re.findall('&(s=\d*)', og_url)
-                    if len(s_value_list) == 0 and int(current_page) == 1:
-                        new_url = og_url+'&s=60'
-                    else:
-                        new_url = og_url.replace(s_value_list[0], 's=%d'%(int(page_size)*int(current_page)))
-                    self.logger.debug('下一页:{}'.format(new_url))
-                    yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name, 'category_url':category_url})
-
-                    print('new 下一页 URL:{}'.format(new_url))
+                    test_url = 'https://s.taobao.com/list?q=%E6%82%A6%E8%AF%97%E9%A3%8E%E5%90%9F&cat=1801%2C50071436%2C50010788%3B50011977%3B50011981%3B50011977%3B50011981%3B50011979%3B50011979%3B50011979%3B50011978%3B50011979%3B50011977&style=grid&seller_type=taobao&spm=a219r.lm843.1000187.1'
+                    yield Request(url=test_url, callback=self.parse_content, meta={'category_name': c_n, 'category_url':c_url})
+                    # yield Request(url='https:' + c_url, callback=self.parse_content,
+                    #               meta={'category_name': c_n, 'category_url': c_url})
+                    #
+                    return
 
     def parse_content(self, response):
         print('当前key:{}'.format(self.nav_cat_key_set))
@@ -264,39 +154,6 @@ class TaobaoSpider(scrapy.Spider):
             #如果 key = path 则是叠加
             #如果 key = cat 则是覆盖
             #再进行分页
-
-            # allow_add_cat = True
-            # for cat_key in self.nav_cat_key_set:
-            #     if cat_key in og_url:
-            #         allow_add_cat = False
-            #         break
-            # if allow_add_cat == True:
-            #     print('需要添加分类')
-            #     try:
-            #         nav_category_list = g_page_config.get('mods').get('nav').get('data').get('common')
-            #         max_category_item = None
-            #
-            #         for nav_category in nav_category_list:
-            #             if max_category_item == None:
-            #                 max_category_item = nav_category
-            #             else:
-            #                 if len(max_category_item.get('sub')) < len(nav_category.get('sub')):
-            #                     max_category_item = nav_category
-            #         if max_category_item != None:
-            #             max_category_subs = max_category_item.get('sub')
-            #             for category_sub in max_category_subs:
-            #                 key = category_sub['key']
-            #                 value = category_sub['value']
-            #                 self.nav_cat_key_set.add(key)
-            #                 new_url = og_url+'&{}={}'.format(key, value)
-            #                 print('新的分类url:{}'.format(new_url))
-            #                 print('cat_key_set:{}'.format(self.nav_cat_key_set))
-            #                 yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name, 'category_url': category_url})
-            #         #增加完分类后不进行下面的操作
-            #         return
-            #     except Exception as error:
-            #         print('获取分类失败 ：{}'.format(error))
-
             if data_info != None:
                 page_size = data_info.get('pageSize')
                 totalCount = data_info.get('totalCount')
@@ -364,6 +221,12 @@ class TaobaoSpider(scrapy.Spider):
             item['data_info'] = data_info
             item['data_list'] = data_list
             yield item
+            for taobao_item in data_list:
+                url = taobao_item.get('detail_url')
+                url = 'https:' + url
+                request = Request(url=url, callback=self.parser_item_detail)
+                yield request
+
 
             og_url = response.url
             #先进行分类，假如页面数量大于100，则进行再次分类
@@ -485,3 +348,19 @@ class TaobaoSpider(scrapy.Spider):
                 print('spulist 下的新请求的url:{}'.format(new_url))
                 yield Request(url=new_url, callback=self.parse_content, meta={'category_name': category_name,'category_name_level_2': data.get('title'), 'category_url':category_url})
         return
+
+    def parser_item_detail(self, response):
+        content = response.text
+        url = response.url
+        file_name = re.findall(r'id=(\d*)&', url)[0]
+        file_name = os.path.join('web', file_name)
+        file = open(file_name, mode='w', encoding='unicode_escape')
+        # with open(url.replace('/','_'), mode='w', encoding='unicode_escape') as file:
+        file.write(content)
+        file.close()
+        self.logger.debug(file_name)
+        self.logger.debug('写入完毕')
+        self.logger.debug('parser_item_detail')
+        self.logger.debug(response.url)
+        config = TaobaoItemDetailParse.get_item_config(content)
+        self.logger.debug(config)

@@ -17,7 +17,7 @@ print(ROOT_PATH)
 from datetime import datetime
 from taobao_scrapy.MyItems.items import (TaobaoCategoryItem,
                                          TaoBaolistsrpItem, TaoBaospulistItem, TaoBaomainsrpItem, TaoBaospudetailItem)
-
+from taobao_scrapy.MyItems.items import TaoBaoItemDetailItem
 from DB.DBManager import DBManager
 
 
@@ -27,12 +27,10 @@ TYPE_SPUDETAIL = 'TYPE_SPUDETAIL'
 TYPE_MAINSRP = 'TYPE_MAINSRP'
 class TaobaoScrapyPipeline(object):
     dbmanager = DBManager()
-
     # fil = open('t.txt', mode='w')
     #
     category_file = open('category.txt', mode='w')
     # items_file = open('items.txt', mode='w')
-
     def process_item(self, item, spider):
         # print('piplelines accept data :{}'.format(type(item)))
         if isinstance(item, TaobaoCategoryItem):
@@ -101,3 +99,9 @@ class TaobaoScrapyPipeline(object):
             self.dbmanager.insert_category_info(data_info_insert)
             self.dbmanager.insert_data_list(data_list)
         print('type:{} 数据处理完毕'.format(type))
+
+
+class TaobaoItemDetailPipeline(object):
+    def process_item(self, item, spider):
+        if isinstance(item, TaoBaoItemDetailItem):
+            pass
