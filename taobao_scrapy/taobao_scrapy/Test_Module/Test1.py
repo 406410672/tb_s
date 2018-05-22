@@ -64,6 +64,29 @@ def get_item_info(content, config):
 
 
 if __name__ == '__main__':
+    import requests
+    import urllib.parse as pr
+    for i in range(25):
+        try:
+            response = requests.get('http://192.168.62.229:50010/get')
+
+            proxy = response.text
+            proxy = proxy.replace('"','')
+            proxy = proxy.replace('\n','')
+            protocol = proxy.split(':')[0]
+            # print(proxy)
+            # print(parse)
+            # print(proxy)
+        except Exception as error:
+            print('errer:{}'.format(error))
+        try:
+            proxies = {protocol:proxy}
+            print(proxies)
+            response = requests.get('http://httpbin.org/ip', proxies=proxies)
+            print(response.text)
+        except Exception as error:
+            print('error :{} {}'.format(error, proxies))
+    exit()
     # print(os.path.realpath(os.path.dirname(__file__)))
     files = os.listdir('..\..\web')
     print(len(files))
@@ -78,7 +101,7 @@ if __name__ == '__main__':
         #     print(json.dumps(result))
         #     break
         file_name = '14653435847'
-        filer = open(os.path.join('..\..\web', file_name), encoding='unicode_escape')
+        filer = open(os.path.join('..\..\web', file_name), encoding='gb18030')
         content = filer.read()
         # print(content)
         # print(content)
