@@ -2,12 +2,243 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79660b8f-c42e-42e0-a2bf-525525087ad7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taobao_scrapy/.idea/misc.xml" afterPath="$PROJECT_DIR$/taobao_scrapy/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taobao_scrapy/.idea/taobao_scrapy.iml" afterPath="$PROJECT_DIR$/taobao_scrapy/.idea/taobao_scrapy.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taobao_scrapy/.idea/workspace.xml" afterPath="$PROJECT_DIR$/taobao_scrapy/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/BaseModule/TaobaoParse.py" afterPath="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/BaseModule/TaobaoParse.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/Test_Module/Test1.py" afterPath="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/Test_Module/Test1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/Test_Module/w.py" afterPath="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/Test_Module/w.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/https" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/items.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/10065123813" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/12312387221" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/14335602945" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/14653435847" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/15988161719" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/16495453667" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/16863952272" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/16888711972" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/17143745168" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/17270353276" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/17300046124" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/17871049095" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/18493218479" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/18649873368" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/18667834103" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/18675515183" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/19205046081" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/19417868107" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/19428004887" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/19446448892" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/19882067397" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/20528047971" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/20834939403" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/21009987746" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/21497459180" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/21694875860" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/21840443183" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/23101280605" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/23446040649" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/25083592885" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/25350984591" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/25972016053" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/25972616869" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/27513052316" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/35112289872" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/36369930684" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/37107230074" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/37109287675" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/37176318823" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/37396198234" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/37776033168" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/37984849472" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/38297863936" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/38383084886" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/38532078903" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/38634208358" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/38760276806" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/39251067704" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/39424587406" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/39464187511" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/39645377475" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/39812668593" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/40249086759" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/40269181474" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/40301364977" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/40321100272" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/40330451841" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/40480276716" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/40679010097" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/40790316899" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/41410699007" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/41469322181" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/41477138477" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/41478012431" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/41484570019" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/41508468288" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/41841839670" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/41846269580" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/41860908324" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/41886063678" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/42052274270" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/42230853809" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/42329210273" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/42588112625" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/42588248408" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/42936433882" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/42960027538" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/43531244970" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/43749871942" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/43876954871" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/44029982385" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/44128535416" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/44487619305" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/44568988669" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/45115396086" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/45248062877" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/45415832424" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/45483955871" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/45623199376" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/45691662820" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/45716656500" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/520037056505" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/520086774675" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/520166425365" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/520474356802" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/520496658974" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/520705067818" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/520714967977" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/521091889695" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/521797088616" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/521907235837" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/521922980578" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/522566627043" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/522592021139" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/522797648115" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/522847365223" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/523283855667" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/524264312314" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/524867811909" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/524966639629" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/525524654776" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/526937147518" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/527202048025" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/527306560899" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/527474693290" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/527492299130" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/528030780076" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/528393041224" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/528499794610" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/528532537463" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/528840095049" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/529009488199" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/529153787119" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/529583467919" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/530320212772" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/530396646517" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/530499900814" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/530808591649" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/530840519123" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/530854824896" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/530863154515" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/531165995276" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/531381673087" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/531543800436" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/531755322388" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/531937670564" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/531948956250" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/532058913482" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/532087606880" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/532703134534" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/532729613779" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/532759740661" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/532785385306" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/532843323746" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/533117916627" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/534079478834" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/534197921029" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/534543959061" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/534585117236" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/534699100319" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/534750590147" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/534961220461" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/534995942043" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/535565001023" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/535736955115" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/535812204957" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/535837629159" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/535950149344" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/535950374656" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/536093239210" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/536205429488" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/536328612654" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/536383842201" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/536574787016" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/536733646975" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/536744358180" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/536860149978" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/536867210565" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/537611739816" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/537690822198" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/538146395098" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/538642865883" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/538709078672" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/538816207328" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/539127434242" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/539208192697" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/539423171701" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/539498795779" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/539561007965" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/539865304179" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/540672795776" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/540900220679" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/542611345018" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/543375455157" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/544014587318" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/544523864447" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/544603792043" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/544809533410" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/545267198717" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/546000326724" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/546570628193" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/546940263300" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/547169465335" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/548151349568" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/555737530967" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/557360214304" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/557942489971" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/558258230561" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/558413112448" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/558592551008" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/558778568162" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/559364858731" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/559515017581" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/559636510420" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/559936138868" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/560112679915" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/560828732731" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/561032018463" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/561438384765" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/561664334359" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/561847368379" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/563881961482" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/563955789632" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/565839808572" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/566278851687" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/566322704223" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/566396941738" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/566402960700" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/566491372395" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/566533940595" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/566754562541" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/567014434873" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/567202016288" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/567420532633" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/567666313519" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/567672125543" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/567844639286" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/567969979268" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/568817326037" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/6732887107" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/7518435721" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/taobao_scrapy/web/9372319395" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/MyPipeLine/pipelines.py" afterPath="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/MyPipeLine/pipelines.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/spiders/taobao.py" afterPath="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/spiders/taobao.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +253,8 @@
       <file leaf-file-name="TaobaoParse.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/BaseModule/TaobaoParse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="29" column="45" lean-forward="false" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+            <state relative-caret-position="163">
+              <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
               <folding>
                 <element signature="e#210#252#0" expanded="true" />
               </folding>
@@ -31,17 +262,52 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBManager.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DBManager.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/DB/DBManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="73" column="37" lean-forward="true" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
+            <state relative-caret-position="700">
+              <caret line="65" column="57" lean-forward="false" selection-start-line="65" selection-start-column="57" selection-end-line="65" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="taobao.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/spiders/taobao.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="241" column="0" lean-forward="true" selection-start-line="241" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pipelines.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/MyPipeLine/pipelines.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="72" column="16" lean-forward="true" selection-start-line="72" selection-start-column="16" selection-end-line="72" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="entrypoint.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/taobao_scrapy/entrypoint.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>parser_item_detail</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -50,6 +316,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/BaseModule/TaobaoParse.py" />
+        <option value="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/spiders/taobao.py" />
+        <option value="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/MyPipeLine/pipelines.py" />
       </list>
     </option>
   </component>
@@ -74,6 +342,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -100,10 +370,48 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tb_s" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tb_s" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="taobao_scrapy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="taobao_scrapy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tb_s" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tb_s" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="taobao_scrapy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="taobao_scrapy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyPipeLine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -122,7 +430,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.TaobaoParse">
+  <component name="RunManager" selected="Python.entrypoint">
     <configuration default="false" name="TaobaoParse" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -136,6 +444,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="tb_s" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/BaseModule/TaobaoParse.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="entrypoint" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/taobao_scrapy" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="tb_s" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/taobao_scrapy/entrypoint.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -206,12 +532,14 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Python.TaobaoParse" />
+      <item index="1" class="java.lang.String" itemvalue="Python.entrypoint" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.TaobaoParse" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.entrypoint" />
+        <item index="1" class="java.lang.String" itemvalue="Python.TaobaoParse" />
       </list>
     </recent_temporary>
   </component>
@@ -230,11 +558,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21588486" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36830357" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4497768" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22410148" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -262,17 +591,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/BaseModule/TaobaoParse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#210#252#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/BaseModule/TaobaoParse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
+        <state relative-caret-position="520">
           <caret line="29" column="45" lean-forward="false" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
           <folding>
             <element signature="e#210#252#0" expanded="true" />
@@ -282,8 +601,76 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/DB/DBManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
+        <state relative-caret-position="1400">
           <caret line="73" column="37" lean-forward="true" selection-start-line="73" selection-start-column="37" selection-end-line="73" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/BaseModule/TaobaoParse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#210#252#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taobao_scrapy/web/567014434873">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="0" column="26502" lean-forward="false" selection-start-line="0" selection-start-column="26502" selection-end-line="0" selection-end-column="26502" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taobao_scrapy/category.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6762">
+          <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taobao_scrapy/entrypoint.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/spiders/taobao.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="241" column="0" lean-forward="true" selection-start-line="241" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/BaseModule/TaobaoParse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+          <folding>
+            <element signature="e#210#252#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/DB/DBManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="65" column="57" lean-forward="false" selection-start-line="65" selection-start-column="57" selection-end-line="65" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/taobao_scrapy/taobao_scrapy/MyPipeLine/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="72" column="16" lean-forward="true" selection-start-line="72" selection-start-column="16" selection-end-line="72" selection-end-column="16" />
           <folding />
         </state>
       </provider>

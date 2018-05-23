@@ -25,6 +25,7 @@ from taobao_scrapy.BaseModule.TaobaoParse import TaobaoParse, TaobaoItemDetailPa
 from taobao_scrapy.BaseModule.HTLogger import HTLogger
 from taobao_scrapy.Exceptions.ParserException import TaoBaoItemParserException
 from taobao_scrapy.Util.StrHandle import *
+
 class TaobaoSpider(scrapy.Spider):
     name = 'TaobaoSpider'
     allowed_domains = ['taobao.com']
@@ -48,10 +49,10 @@ class TaobaoSpider(scrapy.Spider):
                       '护肤彩妆': '//*[text()="护肤彩妆"]',
                       }
         xpath_dict = {
-            # '手机数码': '//*[text()="手机数码"]',
+            '手机数码': '//*[text()="手机数码"]',
                       '家电办公': '//*[text()="家电办公"]',
-            # '珠宝配饰' : '//*[text()="珠宝配饰"]',
-            #           '护肤彩妆': '//*[text()="护肤彩妆"]',
+            '珠宝配饰' : '//*[text()="珠宝配饰"]',
+                      '护肤彩妆': '//*[text()="护肤彩妆"]',
                       }
         for k,v in xpath_dict.items():
             e_tree = tree.xpath(v)
@@ -221,11 +222,11 @@ class TaobaoSpider(scrapy.Spider):
             item['data_info'] = data_info
             item['data_list'] = data_list
             yield item
-            for taobao_item in data_list:
-                url = taobao_item.get('detail_url')
-                url = 'https:' + url
-                request = Request(url=url, callback=self.parser_item_detail)
-                yield request
+            # for taobao_item in data_list:
+            #     url = taobao_item.get('detail_url')
+            #     url = 'https:' + url
+            #     request = Request(url=url, callback=self.parser_item_detail)
+            #     yield request
 
 
             og_url = response.url
@@ -233,7 +234,6 @@ class TaobaoSpider(scrapy.Spider):
             #如果 key = path 则是叠加
             #如果 key = cat 则是覆盖
             #再进行分页
-
             if data_info != None:
                 page_size = data_info.get('pageSize')
                 totalCount = data_info.get('totalCount')

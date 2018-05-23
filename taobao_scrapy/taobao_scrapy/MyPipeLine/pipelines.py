@@ -69,6 +69,8 @@ class TaobaoScrapyPipeline(object):
             'request_url': request_url,
             'insert_time': insert_date
         }
+        # print('接受到数据:{}'.format(item))
+        # return
         if type == TYPE_LISTSRP:
             for data_item in data_list:
                 data_item['category_name'] = category_name
